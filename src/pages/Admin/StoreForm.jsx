@@ -3,13 +3,13 @@ import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js"
 import {useStateContext} from "../../context/ContextProvider.jsx";
 
-export default function BanksForm() {
+export default function storesForm() {
   const navigate = useNavigate();
   let {id} = useParams();
-  const [banks, setbanks] = useState({
+  const [stores, setstores] = useState({
     id: null,
     name: '',
-    number: null,
+    address: '',
   })
   const [errors, setErrors] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -18,10 +18,10 @@ export default function BanksForm() {
   if (id) {
     useEffect(() => {
       setLoading(true)
-      axiosClient.get(`/banks/${id}`)
+      axiosClient.get(`/stores/${id}`)
         .then(({data}) => {
           setLoading(false)
-          setbanks(data)
+          setstores(data)
           console.log(data);
         })
         .catch(() => {
@@ -32,11 +32,11 @@ export default function BanksForm() {
 
   const onSubmit = ev => {
     ev.preventDefault()
-    if (banks.id) {
-      axiosClient.put(`/banks/${banks.id}`, banks)
+    if (stores.id) {
+      axiosClient.put(`/stores/${stores.id}`, stores)
         .then(() => {
-          setNotification('banks was successfully updated')
-          navigate('/banks')
+          setNotification('stores was successfully updated')
+          navigate('/stores')
         })
         .catch(err => {
           const response = err.response;
@@ -45,11 +45,11 @@ export default function BanksForm() {
           }
         })
     } else {
-      axiosClient.post('/banks', banks)
+      axiosClient.post('/stores', stores)
         .then((res) => {
           console.log(res);
-          setNotification('banks was successfully created')
-          navigate('/banks')
+          setNotification('stores was successfully created')
+          navigate('/stores')
         })
         .catch(err => {
           const response = err.response;
@@ -62,8 +62,8 @@ export default function BanksForm() {
 
   return (
     <>
-      {banks.id && <h1>Update banks: {banks.name}</h1>}
-      {!banks.id && <h1>New banks</h1>}
+      {stores.id && <h1>Update stores: {stores.name}</h1>}
+      {!stores.id && <h1>New stores</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -79,8 +79,8 @@ export default function BanksForm() {
         }
         {!loading && (
           <form onSubmit={onSubmit}>
-            <input value={banks.name} onChange={(e) => setbanks({...banks, name: e.target.value})} placeholder="Name"/>
-            <input value={banks.number} onChange={(e) => setbanks({...banks, number: e.target.value})} placeholder="Number" />
+            <input value={stores.name} onChange={(e) => setstores({...stores, name: e.target.value})} placeholder="Name"/>
+            <input value={stores.address} onChange={(e) => setstores({...stores, address: e.target.value})} placeholder="Address" />
             <button className="btn">Save</button>
           </form>
         )}

@@ -42,6 +42,7 @@ const Checkout = () => {
         axiosClient.get(`/carts/${window.localStorage.getItem('device')}`)
             .then(res => {
                 setProducts(res.data.items)
+                console.log(res.data.items);
                 setCart(res.data.cart)
                 let result = 0
                 res.data.items.forEach(item => {
@@ -60,11 +61,11 @@ const Checkout = () => {
             return acc + item.price * item.quantity
         }, 0)
         setTotal(data)
-        console.log(total);
+        // console.log(total);
     }, [products])
     const createOrder = (data, actions) => {
         const val = document.getElementById('total-price').value
-        console.log(val);
+        // console.log(val);
         return actions.order.create({
             intent: 'CAPTURE',
             purchase_units: [
@@ -98,7 +99,7 @@ const Checkout = () => {
         let productList = document.getElementsByName('product-list')[0].value
         productList = JSON.parse(productList)
         console.log(productList);
-        axiosClient.post('')
+        // axiosClient.post('')
         axiosClient.post('/orders', {
             products: productList,
             total_price: document.getElementById('total-price').value,
@@ -108,12 +109,13 @@ const Checkout = () => {
             email: document.getElementsByName('email')[0].value,
             phone: document.getElementsByName('phone')[0].value,
             shipping_id: shipping,
-            payment_id: 11,
+            payment_id: 6,
             status: 'accepted'
         })
             .then(res => {
-                axiosClient.post('/transaction', {
-                    id: order.id,
+                // console.log(res.data);
+                const payload = {
+                    uuid: order.id,
                     order_id: res.data,
                     intent: order.intent,
                     payer_id: order.payer.payer_id,
@@ -124,8 +126,11 @@ const Checkout = () => {
                     status: order.status,
                     created_at: order.create_time,
                     updated_at: order.update_time
-
-                }).then(res => console.log(res.data))
+                }
+                // console.log(payload);
+                axiosClient.post('/transaction', payload)
+                    .then(res => console.log(res.data))
+                    .catch(err => console.error(err))
             })
             .then((res) => {
                 axiosClient.post('/carts/clear', {
@@ -145,7 +150,7 @@ const Checkout = () => {
                             console.log('FAILED...', error);
                         });
                 })
-            }).catch(err => console.log(err))
+            }).catch(err => console.error(err))
     }
 
     const onError = err => {

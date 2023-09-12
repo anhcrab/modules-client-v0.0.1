@@ -58,13 +58,21 @@ const SingleProductPage = () => {
                             device: window.localStorage.getItem('device'),
                             product_id: data.product.id,
                             quantity: quantity
-                        }).then(({ data }) => {
-                            axiosClient.post('/products/update/' + data.id, {
-                                ...data,
-                                stock_quantity: data.stock_quantity === null ? 1 : data.stock_quantity--,
-                                total_sale: data.total_sale === null ? 1 : data.total_sale++
-                            })
                         })
+                            // .then(res => {
+                            //     const newStock = data && parseInt(data.product.quantity) - parseInt(quantity)
+                            //     const newTotal = data && parseInt(data.product.total_sale) + parseInt(quantity)
+                            //     console.log({
+                            //         stock: newStock,
+                            //         total: newTotal
+                            //     })
+                            //     axiosClient.put('/products/update-stock/' + data.product.id, {
+                            //         stock_quantity: newStock,
+                            //         total_sale: newTotal
+                            //     })
+                            //         .then(res => console.log(res.data))
+                            //         .catch(err => console.error(err))
+                            // })
                         setHeaderCart(!headerCart)
                         setHide(false)
                     }}>Add to Cart</button>
