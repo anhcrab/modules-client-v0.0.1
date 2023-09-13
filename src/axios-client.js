@@ -1,7 +1,10 @@
 import axios from "axios";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const axiosClient = axios.create({
-  baseURL: `http://localhost:3000/api`
+  baseURL: `${process.env.SERVER_URL}/api`
 })
 
 axiosClient.interceptors.request.use((config) => {
