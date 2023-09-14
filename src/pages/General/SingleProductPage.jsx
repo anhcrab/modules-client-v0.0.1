@@ -15,6 +15,7 @@ const SingleProductPage = () => {
     const [comments, setComments] = useState([])
     const [profile, setProfile] = useState()
     const [textarea, setTextarea] = useState('')
+    const [user, setUser] = useState({})
     useEffect(() => {
         axiosClient.get(`/products/${slug}`)
             .then(res => {
@@ -106,7 +107,9 @@ const SingleProductPage = () => {
                         width: '250px'
                     }}>
                         {!profile ? <button onClick={() => {
-                            signInWithPopup(auth, provider)
+                            const client = signInWithPopup(auth, provider)
+                            console.log(client);
+                            setUser(client)
                         }}>
                             Đăng nhập bằng Facebook
                         </button> : ''}
