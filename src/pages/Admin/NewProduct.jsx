@@ -9,6 +9,7 @@ const NewProduct = () => {
     let { id } = useParams();
     const navigate = useNavigate();
     const [cat, setCat] = useState([])
+    // const [attr, setAttr] = useState([])
     const [product, setProduct] = useState({
         id: null,
         type: '',
@@ -100,7 +101,7 @@ const NewProduct = () => {
 
     useEffect(() => {
         axiosClient.get('/product-categories').then(res => setCat(res.data))
-        axiosClient.get('/product-attributes').then(res => setAttr(res.data))
+        // axiosClient.get('/product-attributes').then(res => setAttr(res.data))
     }, [])
 
     return (
@@ -123,12 +124,12 @@ const NewProduct = () => {
                 {!loading && (
                     <form onSubmit={onSubmit}>
                         <input
-                            value={product.type}
+                            defaultValue={product.type}
                             onChange={e => setProduct({ ...product, type: e.target.value })}
                             placeholder="Type"
                         />
                         <input
-                            value={product.name}
+                            defaultValue={product.name}
                             onChange={e => setProduct({ ...product, name: e.target.value })}
                             placeholder="Name"
                         />
@@ -147,17 +148,17 @@ const NewProduct = () => {
                             type='detail'
                         />
                         <input
-                            value={product.regular_price}
+                            defaultValue={product.regular_price}
                             onChange={e => setProduct({ ...product, regular_price: e.target.value })}
                             placeholder="Regular Price"
                         />
                         <input
-                            value={product.sale_price}
+                            defaultValue={product.sale_price}
                             onChange={e => setProduct({ ...product, sale_price: e.target.value })}
                             placeholder="Sale Price"
                         />
                         <input
-                            value={product.stock_quantity}
+                            defaultValue={product.stock_quantity}
                             onChange={e => setProduct({ ...product, stock_quantity: e.target.value })}
                             placeholder="Stocks"
                         />
@@ -196,7 +197,7 @@ const NewProduct = () => {
                             >Color</option>
                         </select>
                         <input
-                            // value={product.attributes[0].name && product.attributes[0].name}
+                            // defaultValue={product.attributes[0] && product.attributes[0].name}
                             onChange={e => setProduct({ 
                                 ...product, 
                                 attribute_name: e.target.value 
@@ -204,7 +205,7 @@ const NewProduct = () => {
                             placeholder="Attribute Name"
                         />
                         <input
-                            // value={product.attributes[0].name && product.attributes[0].name}
+                            // defaultValue={product.attributes[0] && product.attributes[0].name}
                             onChange={e => setProduct({ 
                                 ...product, 
                                 attribute_code: e.target.value 

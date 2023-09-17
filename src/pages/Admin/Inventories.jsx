@@ -139,12 +139,12 @@ const Inventories = () => {
                 <label htmlFor="best-seller">Best Seller</label>
               </th>
               <th style={{ backgroundColor: 'white' }}>
-                <buttom 
+                <button
                   className="btn-add"
                   onClick={() => {
                     setFiltered(filter(inventories))
                   }}
-                >Apply filter</buttom>
+                >Apply filter</button>
               </th>
             </tr>
             <tr>
@@ -161,7 +161,7 @@ const Inventories = () => {
           {loading &&
             <tbody>
               <tr>
-                <td colSpan="5" class="text-center">
+                <td colSpan="5" className="text-center">
                   Loading...
                 </td>
               </tr>

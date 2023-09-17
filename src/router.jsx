@@ -31,6 +31,8 @@ import AttributesForm from "./pages/Admin/AttributesForm.jsx";
 import Orders from "./pages/Admin/Orders.jsx";
 import OrderClient from "./pages/General/OrdersClient.jsx";
 import Transaction from "./pages/Admin/Transaction.jsx";
+import Coupons from "./pages/Admin/Coupons.jsx";
+import CouponsForm from "./pages/Admin/CouponsForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -164,6 +166,18 @@ const router = createBrowserRouter([
       {
         path: '/transactions',
         element: <Transaction />
+      },
+      {
+        path: '/coupons',
+        element: <Coupons />
+      },
+      {
+        path: '/coupons/new',
+        element: <CouponsForm key={'New'} />
+      },
+      {
+        path: '/coupons/:id',
+        element: <CouponsForm key={'Update'} />
       }
     ]
   },

@@ -69,7 +69,7 @@ const Products = () => {
                     {loading &&
                         <tbody>
                             <tr>
-                                <td colSpan="5" class="text-center">
+                                <td colSpan="5" className="text-center">
                                     Loading...
                                 </td>
                             </tr>

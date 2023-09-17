@@ -38,6 +38,7 @@ export default function DefaultLayout() {
         <Link to='/attributes' className="side-nav">Attributes</Link>
         <Link to='/products' className="side-nav">Products</Link>
         <Link to='/inventory' className="side-nav">Inventory</Link>
+        <Link to='/coupons' className="side-nav">Coupons</Link>
         <Link to='/banks' className="side-nav">Banks</Link>
         <Link to='/stores' className="side-nav">Stores</Link>
         <Link to='/shipping' className="side-nav">Shipping</Link>

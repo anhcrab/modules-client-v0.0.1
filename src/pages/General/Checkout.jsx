@@ -4,7 +4,6 @@ import axiosClient from "../../axios-client";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import axios from "axios";
 
 const Checkout = () => {
     const navigate = useNavigate();
@@ -26,6 +25,7 @@ const Checkout = () => {
     const [shipping, setShipping] = useState([]);
     const [payment, setPayment] = useState([]);
     const [shippingPrice, setShippingPrice] = useState(0);
+    const [coupon, setCoupon] = useState('')
     const [order, setOrder] = useState({
         products: products,
         total_price: total,
@@ -182,6 +182,10 @@ const Checkout = () => {
     const onCancel = () => { };
 
     const onValidate = () => { };
+
+    const handleDiscount = (prevPrice) => {
+        
+    }
 
     return (
         <>
@@ -467,6 +471,40 @@ const Checkout = () => {
                                 justifyContent: "space-between",
                                 padding: "10px 0 10px 80px",
                                 width: "100%",
+                                alignItems: 'center'
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                }}
+                            >
+                                <input type="text" id="coupon" placeholder="Nhập mã giảm giá"/>
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    backgroundColor: '#eee',
+                                    height: '50px',
+                                    width: '100px',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => {
+                                    axiosClient('/coupons/' + document.getElementById('coupon').value)
+                                        .then(res => { setCoupon(res.data) })
+                                }}
+                            >
+                                Áp dụng
+                            </div>
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                padding: "10px 0 10px 80px",
+                                width: "100%",
                                 borderTop: "1px solid #ccc",
                             }}
                         >
@@ -482,7 +520,7 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                {total + shippingPrice}đ
+                                {coupon !== '' ? total + shippingPrice : handleDiscount(total + shippingPrice)}đ
                                 <input
                                     id="total-price"
                                     type="number"

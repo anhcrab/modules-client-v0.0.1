@@ -9,7 +9,7 @@ export default function CategoryForm() {
   const [categories, setcategories] = useState({
     id: null,
     name: '',
-    category_id: null,
+    category_id: 0,
   })
   const [errors, setErrors] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -52,9 +52,9 @@ export default function CategoryForm() {
     } else {
       axiosClient.post('/categories', categories)
         .then((res) => {
-          setNotification('categories was successfully created')
-          navigate('/product-category')
-          console.log(res);
+          // setNotification('categories was successfully created')
+          // navigate('/product-category')
+          console.log(res.data);
         })
         .catch(err => {
           const response = err.response;
@@ -86,7 +86,7 @@ export default function CategoryForm() {
           <form onSubmit={onSubmit}>
             <input value={categories.name} onChange={ev => setcategories({...categories, name: ev.target.value})} placeholder="Name"/>
             <select onChange={e => setcategories({...categories, category_id: Number.parseInt(e.target.value)})}>
-              <option value={null}>Choose parent category</option>
+              <option value={0}>Choose parent category</option>
               {parents.map(p => <option value={p.id}>
                 {p.name}
               </option>)}

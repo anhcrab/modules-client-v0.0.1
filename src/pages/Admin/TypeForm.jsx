@@ -44,9 +44,10 @@ export default function TypeForm() {
         })
     } else {
       axiosClient.post('/types', types)
-        .then(() => {
+        .then((res) => {
           setNotification('types was successfully created')
           navigate('/product-type')
+          console.log(res.data);
         })
         .catch(err => {
           const response = err.response;
