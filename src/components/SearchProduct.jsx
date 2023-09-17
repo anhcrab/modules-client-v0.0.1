@@ -14,9 +14,12 @@ export default function SearchProduct({ slug, img, name, price }) {
       flexDirection: 'row',
       justifyContent: 'space-between',
       textDecoration: 'none',
-      padding: '20px'
+      padding: '20px',
+      alignItems: 'center'
     }}>
-      <img src={img} alt="ảnh sản phẩm" />
+      <img src={img} alt="ảnh sản phẩm" style={{
+        width: '90px'
+      }} />
       <p>{name}</p>
       <p>{price} đ</p>
     </Link>

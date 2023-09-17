@@ -85,15 +85,15 @@ export default function Coupons() {
                     <td>{u.id}</td>
                     <td>{u.code}</td>
                     <td>{u.name}</td>
-                    <th>{u.description}</th>
-                    <th>{u.max_uses}</th>
-                    <th>{u.max_uses_user}</th>
-                    <th>{u.type}</th>
-                    <th>{u.discount_amount}</th>
-                    <th>{u.min_amount}</th>
-                    <th>{u.status}</th>
-                    <th>{u.starts_at}</th>
-                    <th>{u.expires_at}</th>
+                    <td dangerouslySetInnerHTML={{ __html: u.description}}></td>
+                    <td>{u.max_uses}</td>
+                    <td>{u.max_uses_user}</td>
+                    <td>{u.type}</td>
+                    <td>{u.discount_amount}</td>
+                    <td>{u.min_amount}</td>
+                    <td>{u.status}</td>
+                    <td>{u.starts_at}</td>
+                    <td>{u.expires_at}</td>
                     <td>
                       <Link className="btn-edit" to={"/coupons/" + u.id}>
                         Edit

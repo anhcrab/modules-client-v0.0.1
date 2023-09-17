@@ -9,6 +9,7 @@ export default function SearchContainer({ result, state }) {
       style={{
         display: state === true ? "block" : "none",
         position: "absolute",
+        zIndex: '10',
         backgroundColor: "#fff",
         width: "480px",
         minHeight: "200px",

@@ -37,7 +37,7 @@ export default function AttributesForm() {
       axiosClient.put(`/attributes/${attributes.id}`, attributes)
         .then(() => {
           setNotification('attributes was successfully updated')
-          // navigate('/attributes')
+          navigate('/attributes')
         })
         .catch(err => {
           const response = err.response;

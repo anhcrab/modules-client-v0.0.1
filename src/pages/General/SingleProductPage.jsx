@@ -131,7 +131,7 @@ const SingleProductPage = () => {
                             product_id: data.product.id,
                         }
                         console.log(payload);
-                        axiosClient.post(`/comments-ratings/${slug}/new`, payload)
+                        axiosClient.post(`/reviews/${slug}/new`, payload)
                             .then(res => {
                                 document.querySelector('.comment-box').value = ''
                                 window.location.reload()

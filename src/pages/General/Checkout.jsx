@@ -16,7 +16,8 @@ const Checkout = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState();
     const [count, setCount] = useState(0);
-    const [total, setTotal] = useState(0.0);
+    const [subTotal, setSubTotal] = useState(0.00)
+    const [total, setTotal] = useState(0.00);
     const [check, setCheck] = useState("");
     const [orderMethod, setOrderMethod] = useState({
         payment: null,
@@ -25,7 +26,7 @@ const Checkout = () => {
     const [shipping, setShipping] = useState([]);
     const [payment, setPayment] = useState([]);
     const [shippingPrice, setShippingPrice] = useState(0);
-    const [coupon, setCoupon] = useState('')
+    const [coupon, setCoupon] = useState(null);
     const [order, setOrder] = useState({
         products: products,
         total_price: total,
@@ -38,6 +39,10 @@ const Checkout = () => {
         payment_id: orderMethod.shipping,
         status: "accepted",
     });
+
+    useEffect(() => {
+        setTotal(subTotal + shippingPrice)
+    }, [subTotal, shippingPrice])
 
     useEffect(() => {
         axiosClient
@@ -62,12 +67,10 @@ const Checkout = () => {
         const data = products.reduce((acc, item) => {
             return acc + item.price * item.quantity;
         }, 0);
-        setTotal(data);
-        // console.log(total);
+        setSubTotal(data);
     }, [products]);
     const createOrder = (data, actions) => {
         const val = document.getElementById("total-price").value;
-        // console.log(val);
         return actions.order.create({
             intent: "CAPTURE",
             purchase_units: [
@@ -100,8 +103,6 @@ const Checkout = () => {
         });
         let productList = document.getElementsByName("product-list")[0].value;
         productList = JSON.parse(productList);
-        // console.log(productList);
-        // axiosClient.post('')
         axiosClient
             .post("/orders", {
                 products: productList,
@@ -116,7 +117,6 @@ const Checkout = () => {
                 status: "accepted",
             })
             .then((res) => {
-                // console.log(res.data);
                 const payload = {
                     uuid: order.id,
                     order_id: res.data,
@@ -184,8 +184,27 @@ const Checkout = () => {
     const onValidate = () => { };
 
     const handleDiscount = (prevPrice) => {
-        
-    }
+        if(coupon){
+            // if (coupon.status == 0) return prevPrice
+            if (coupon.type === 'percent' && prevPrice >= coupon.min_amount) {
+                console.log((coupon.discount_amount / 100) * prevPrice);
+                setTotal((coupon.discount_amount / 100) * prevPrice)
+            } else {
+                return setTotal(prevPrice - coupon.discount_amount > 0 ? prevPrice - coupon.discount_amount : 0)
+            }
+        }
+    };
+
+    useEffect(() => {
+        if (coupon && coupon.status == 1){
+            if (coupon.type === 'percent' && total >= coupon.min_amount) {
+                console.log((coupon.discount_amount / 100) * total);
+                setTotal(total -(coupon.discount_amount / 100) * total)
+            } else {
+                setTotal(total - coupon.discount_amount > 0 ? total - coupon.discount_amount : 0)
+            }
+        }
+    }, [coupon])
 
     return (
         <>
@@ -206,11 +225,23 @@ const Checkout = () => {
                         justifyContent: "space-between",
                     }}
                 >
-                    <div className="col-lg-6">
+                    <div
+                        className="col-lg-6"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "10px",
+                        }}
+                    >
                         <div className="row">
                             <h2>Thông tin đơn hàng</h2>
                         </div>
-                        <form action="" method="post" className="row">
+                        <form
+                            action=""
+                            method="post"
+                            className="row"
+                            style={{ gap: "10px" }}
+                        >
                             <input
                                 name="fullname"
                                 type="text"
@@ -439,7 +470,7 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                {total}đ
+                                {subTotal}đ
                             </div>
                         </div>
                         <div
@@ -471,7 +502,7 @@ const Checkout = () => {
                                 justifyContent: "space-between",
                                 padding: "10px 0 10px 80px",
                                 width: "100%",
-                                alignItems: 'center'
+                                alignItems: "center",
                             }}
                         >
                             <div
@@ -479,21 +510,30 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                <input type="text" id="coupon" placeholder="Nhập mã giảm giá"/>
+                                <input
+                                    type="text"
+                                    id="coupon"
+                                    placeholder="Nhập mã giảm giá"
+                                />
                             </div>
                             <div
                                 style={{
                                     display: "flex",
-                                    backgroundColor: '#eee',
-                                    height: '50px',
-                                    width: '100px',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    cursor: 'pointer'
+                                    backgroundColor: "#eee",
+                                    height: "50px",
+                                    width: "100px",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    cursor: "pointer",
                                 }}
                                 onClick={() => {
-                                    axiosClient('/coupons/' + document.getElementById('coupon').value)
-                                        .then(res => { setCoupon(res.data) })
+                                    axiosClient(
+                                        "/coupons/check/" +
+                                        document.getElementById("coupon").value
+                                    ).then((res) => {
+                                        setCoupon(res.data);
+                                        console.log(res.data);
+                                    });
                                 }}
                             >
                                 Áp dụng
@@ -520,7 +560,8 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                {coupon !== '' ? total + shippingPrice : handleDiscount(total + shippingPrice)}đ
+                                {total}
+                                đ
                                 <input
                                     id="total-price"
                                     type="number"
@@ -550,29 +591,23 @@ const Checkout = () => {
                                     productList = JSON.parse(productList);
                                     const payload = {
                                         products: productList,
-                                        total_price:
-                                            document.getElementById("total-price").value,
+                                        total_price: document.getElementById("total-price").value,
                                         device_id: window.localStorage.getItem("device"),
                                         address: document.getElementsByName("address")[0].value,
-                                        full_name:
-                                            document.getElementsByName("fullname")[0].value,
+                                        full_name: document.getElementsByName("fullname")[0].value,
                                         email: document.getElementsByName("email")[0].value,
                                         phone: document.getElementsByName("phone")[0].value,
                                         shipping_id: orderMethod.shipping,
-                                        payment_id: 6,
+                                        payment_id: orderMethod.payment,
                                         status: "accepted",
-                                    }
+                                    };
                                     console.log(payload);
                                     axiosClient
-                                        .post(
-                                            "orders/",
-                                            payload,
-                                            {
-                                                headers: {
-                                                    Accept: "application/json",
-                                                },
-                                            }
-                                        )
+                                        .post("orders/", payload, {
+                                            headers: {
+                                                Accept: "application/json",
+                                            },
+                                        })
                                         .then((res) => {
                                             console.log(res.data);
                                             axiosClient
