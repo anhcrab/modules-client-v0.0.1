@@ -29,7 +29,7 @@ const TextEditor = ({ value, setValue, height, placeholder, type }) => {
                 display: 'inline-block',
                 width: '100%',
                 height: `${height}px`,
-                marginTop: '10px',
+                marginBottom: '50px',
                 transition: 'all 0.3s',
             }}
             placeholder={placeholder}

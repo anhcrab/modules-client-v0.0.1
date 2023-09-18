@@ -110,6 +110,7 @@ const Orders = () => {
             <tr>
               <th>ID</th>
               <th>Items</th>
+              <th>Total Price</th>
               <th>Full Name</th>
               <th>Address</th>
               <th>Phone</th>
@@ -156,6 +157,7 @@ const Orders = () => {
                             );
                           })}
                         </td>
+                        <td>{order.total_price}</td>
                         <td>{order.fullname}</td>
                         <td>{order.address}</td>
                         <td>{order.phone}</td>

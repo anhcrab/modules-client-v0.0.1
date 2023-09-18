@@ -122,7 +122,12 @@ const NewProduct = () => {
                     </div>
                 }
                 {!loading && (
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onSubmit} style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '10px',
+                        width: '1320px'
+                    }}>
                         <input
                             defaultValue={product.type}
                             onChange={e => setProduct({ ...product, type: e.target.value })}
@@ -158,12 +163,15 @@ const NewProduct = () => {
                             placeholder="Sale Price"
                         />
                         <input
-                            defaultValue={product.stock_quantity}
+                            defaultValue={product.quantity}
                             onChange={e => setProduct({ ...product, stock_quantity: e.target.value })}
                             placeholder="Stocks"
                         />
                         <select name="prd-cat"
                             onChange={e => setProduct({ ...product, category: e.target.value })}
+                            style={{
+                                width: '500px'
+                            }}
                         >
                             <option value={null}>Categories</option>
                             {cat && cat.map(cat => <option value={cat.id}>
@@ -173,6 +181,7 @@ const NewProduct = () => {
                         <br/>
                         <select name="prd-cat"
                             onChange={e => setProduct({ ...product, attribute_type: e.target.value })}
+                            style={{ width: '200px' }}
                         >
                             <option 
                                 value={null} 
@@ -197,7 +206,7 @@ const NewProduct = () => {
                             >Color</option>
                         </select>
                         <input
-                            // defaultValue={product.attributes[0] && product.attributes[0].name}
+                            defaultValue={product.attributes && product.attributes.at(0).name}
                             onChange={e => setProduct({ 
                                 ...product, 
                                 attribute_name: e.target.value 
@@ -205,7 +214,7 @@ const NewProduct = () => {
                             placeholder="Attribute Name"
                         />
                         <input
-                            // defaultValue={product.attributes[0] && product.attributes[0].name}
+                            defaultValue={product.attributes && product.attributes.at(0).code}
                             onChange={e => setProduct({ 
                                 ...product, 
                                 attribute_code: e.target.value 
@@ -218,6 +227,7 @@ const NewProduct = () => {
                             <img
                                 src={product.images}
                                 alt="Ảnh được hiển thị ở đây "
+                                style={{ width: '700px' }}
                             />
                         </div>
                         <input

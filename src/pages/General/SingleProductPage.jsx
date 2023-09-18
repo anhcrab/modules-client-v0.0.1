@@ -21,7 +21,7 @@ const SingleProductPage = () => {
             .then(res => {
                 setData(res.data)
             })
-        axiosClient.get(`/comments-ratings/${slug}`).then(res => {
+        axiosClient.get(`/reviews/${slug}`).then(res => {
             setComments(res.data)
         })
     }, [])

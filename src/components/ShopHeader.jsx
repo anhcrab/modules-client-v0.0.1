@@ -149,6 +149,7 @@ const ShopHeader = ({ cartState, setCartState }) => {
                         right: 0,
                         backgroundColor: "#fff",
                         border: "1px solid #ccc",
+                        zIndex: 10
                     }}
                 >
                     {cart.items &&
