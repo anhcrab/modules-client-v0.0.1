@@ -11,7 +11,7 @@ export default function SearchContainer({ result, state }) {
         position: "absolute",
         zIndex: '10',
         backgroundColor: "#fff",
-        width: "480px",
+        width: "400px",
         minHeight: "200px",
         paddingTop: "15px",
       }}

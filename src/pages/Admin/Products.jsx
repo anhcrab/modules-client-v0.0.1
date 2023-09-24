@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosClient from "../../axios-client.js";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 // import img from '../assets/logo-pis.png'
 
 const Products = () => {
@@ -11,6 +12,7 @@ const Products = () => {
     const [attributes, setAttributes] = useState([]);
     const [loading, setLoading] = useState(false);
     const { setNotification } = useStateContext()
+    const { t } = useTranslation('admin')
 
     useEffect(() => {
         getProducts();
@@ -46,10 +48,10 @@ const Products = () => {
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
-                <h1>Products</h1>
+                <h1>{t('product.products.title')}</h1>
                 <div>
-                    <Link className="btn-add" to="/products/new">Add new</Link>
-                    <button className="btn-add">Export</button>
+                    <Link className="btn-add" to="/products/new">{t('product.products.table.add')}</Link>
+                    {/* <button className="btn-add">{t('product.products.table.export')}</button> */}
                 </div>
             </div>
             <div className="card animated fadeInDown">
@@ -57,13 +59,13 @@ const Products = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Type</th>
-                            <th>image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Attibute</th>
-                            <th>Actions</th>
+                            <th>{t('product.products.table.type')}</th>
+                            <th>{t('product.products.table.image')}</th>
+                            <th>{t('product.products.table.name')}</th>
+                            <th>{t('product.products.table.price')}</th>
+                            <th>{t('product.products.table.category')}</th>
+                            <th>{t('product.products.table.attribute')}</th>
+                            <th>{t('product.products.table.actions')}</th>
                         </tr>
                     </thead>
                     {loading &&
@@ -101,9 +103,9 @@ const Products = () => {
                                         return `${a.name}, `
                                     })}</td>
                                     <td>
-                                        <Link className="btn-edit" to={'/products/' + p.id}>Edit</Link>
+                                        <Link className="btn-edit" to={'/products/' + p.id}>{t('product.products.table.edit')}</Link>
                                         &nbsp;
-                                        <button className="btn-delete" onClick={ev => onDeleteClick(p)}>Delete</button>
+                                        <button className="btn-delete" onClick={ev => onDeleteClick(p)}>{t('product.products.table.delete')}</button>
                                     </td>
                                 </tr>
                             ))}

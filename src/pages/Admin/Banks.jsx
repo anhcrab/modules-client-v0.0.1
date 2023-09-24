@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js";
 import {Link} from "react-router-dom";
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function Banks() {
   const [banks, setbanks] = useState([]);
   const [loading, setLoading] = useState(false);
   const {setNotification} = useStateContext()
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getbanks();
@@ -37,17 +39,17 @@ export default function Banks() {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
-        <h1>banks</h1>
-        <Link className="btn-add" to="/banks/new">Add new</Link>
+        <h1>{t('shop.banks.title')}</h1>
+        <Link className="btn-add" to="/banks/new">{t('shop.banks.table.add')}</Link>
       </div>
       <div className="card animated fadeInDown">
         <table>
           <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Number</th>
-            <th>Actions</th>
+            <th>{t('shop.banks.table.name')}</th>
+            <th>{t('shop.banks.table.number')}</th>
+            <th>{t('shop.banks.table.actions')}</th>
           </tr>
           </thead>
           {loading &&
@@ -67,9 +69,9 @@ export default function Banks() {
                 <td>{u.name}</td>
                 <td>{u.number}</td>
                 <td>
-                  <Link className="btn-edit" to={'/banks/' + u.id}>Edit</Link>
+                  <Link className="btn-edit" to={'/banks/' + u.id}>{t('shop.banks.table.edit')}</Link>
                   &nbsp;
-                  <button className="btn-delete" onClick={() => onDeleteClick(u)}>Delete</button>
+                  <button className="btn-delete" onClick={() => onDeleteClick(u)}>{t('shop.banks.table.delete')}</button>
                 </td>
               </tr>
             ))}

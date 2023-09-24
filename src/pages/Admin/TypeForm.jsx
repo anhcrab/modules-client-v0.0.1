@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js"
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function TypeForm() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function TypeForm() {
   const [errors, setErrors] = useState(null)
   const [loading, setLoading] = useState(false)
   const {setNotification} = useStateContext()
+  const { t } = useTranslation('admin')
 
   if (id) {
     useEffect(() => {
@@ -60,8 +62,8 @@ export default function TypeForm() {
 
   return (
     <>
-      {types.id && <h1>Update types: {types.name}</h1>}
-      {!types.id && <h1>New types</h1>}
+      {types.id && <h1>{t('product.types.form.update')}: {types.name}</h1>}
+      {!types.id && <h1>{t('product.types.form.new')}</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -77,8 +79,8 @@ export default function TypeForm() {
         }
         {!loading && (
           <form onSubmit={onSubmit}>
-            <input value={types.name} onChange={ev => settypes({...types, name: ev.target.value})} placeholder="Name"/>
-            <button className="btn">Save</button>
+            <input value={types.name} onChange={ev => settypes({...types, name: ev.target.value})} placeholder={t('product.types.form.name')}/>
+            <button className="btn">{t('product.types.form.save')}</button>
           </form>
         )}
       </div>

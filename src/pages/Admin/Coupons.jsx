@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useStateContext } from "../../context/ContextProvider";
 import axiosClient from "../../axios-client";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Coupons() {
   const [coupons, setcoupons] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getcoupons();
@@ -44,9 +46,9 @@ export default function Coupons() {
           alignItems: "center",
         }}
       >
-        <h1>coupons</h1>
+        <h1>{t('coupons.title')}</h1>
         <Link className="btn-add" to="/coupons/new">
-          Add new
+          {t('coupons.table.add')}
         </Link>
       </div>
       <div className="card animated fadeInDown">
@@ -54,18 +56,18 @@ export default function Coupons() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Code</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Max uses</th>
-              <th>Max uses per user</th>
-              <th>type</th>
-              <th>Discount</th>
-              <th>Min</th>
-              <th>Status</th>
-              <th>Starts</th>
-              <th>Expires</th>
-              <th>Actions</th>
+              <th>{t('coupons.table.code')}</th>
+              <th>{t('coupons.table.name')}</th>
+              <th>{t('coupons.table.description')}</th>
+              <th>{t('coupons.table.max_uses')}</th>
+              <th>{t('coupons.table.max_uses_user')}</th>
+              <th>{t('coupons.table.type')}</th>
+              <th>{t('coupons.table.discount')}</th>
+              <th>{t('coupons.table.min')}</th>
+              <th>{t('coupons.table.status')}</th>
+              <th>{t('coupons.table.starts')}</th>
+              <th>{t('coupons.table.expires')}</th>
+              <th>{t('coupons.table.actions')}</th>
             </tr>
           </thead>
           {loading && (
@@ -96,14 +98,14 @@ export default function Coupons() {
                     <td>{u.expires_at}</td>
                     <td>
                       <Link className="btn-edit" to={"/coupons/" + u.id}>
-                        Edit
+                        {t('coupons.table.edit')}
                       </Link>
                       &nbsp;
                       <button
                         className="btn-delete"
                         onClick={() => onDeleteClick(u)}
                       >
-                        Delete
+                        {t('coupons.table.delete')}
                       </button>
                     </td>
                   </tr>

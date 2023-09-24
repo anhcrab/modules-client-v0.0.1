@@ -1,5 +1,6 @@
 import React from 'react'
 import { CSVLink } from 'react-csv'
+import { useTranslation } from 'react-i18next'
 
 export default function ExportToCsv({ data, filename }) {
   const formatData = (data) => {
@@ -19,9 +20,10 @@ export default function ExportToCsv({ data, filename }) {
     })
     return final
   }
+  const { t } = useTranslation('export')
   return (
     <>
-      <CSVLink data={formatData(data)} filename={filename}>Export</CSVLink>
+      <CSVLink className='btn-add' data={formatData(data)} filename={filename}>{t('title')}</CSVLink>
     </>
   )
 }

@@ -1,0 +1,20 @@
+{
+  "heading": "Order Information",
+  "name": "Full Name",
+  "email": "Email",
+  "phone": "Phone",
+  "address": "Address",
+  "shipping": "Shipping Methods",
+  "payment": "Payment Methods",
+  "order": {
+    "title": "Order",
+    "product": "product(s)",
+    "subtotal": "Subtotal",
+    "shipping_price": "Shipping Price",
+    "coupon": "Enter Code",
+    "apply": "Apply",
+    "total": "Total",
+    "submit": "Submit",
+    "or": "or"
+  }
+}

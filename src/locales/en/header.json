@@ -1,0 +1,16 @@
+{
+  "shop": "Shop",
+  "home": "Home",
+  "contact": "Contact",
+  "search": {
+    "placeholder": "Search.....",
+    "image_alt": "Product image"
+  },
+  "cart": {
+    "title": "Cart",
+    "delete": "Delete",
+    "total_price": "Total Price",
+    "checkout": "Checkout"
+  },
+  "order": "Order"
+}

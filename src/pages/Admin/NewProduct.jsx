@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider";
 import axiosClient from "../../axios-client";
 import TextEditor from "../../components/TextEditor";
+import { useTranslation } from "react-i18next";
 
 
 const NewProduct = () => {
@@ -28,6 +29,7 @@ const NewProduct = () => {
     const [errors, setErrors] = useState(null)
     const [loading, setLoading] = useState(false)
     const { setNotification } = useStateContext()
+    const { t } = useTranslation('admin')
 
     if (id) {
         useEffect(() => {
@@ -106,8 +108,8 @@ const NewProduct = () => {
 
     return (
         <>
-            {product.id && <h1>Update Product: {product.name}</h1>}
-            {!product.id && <h1>New Product</h1>}
+            {product.id && <h1>{t('product.products.form.update')}: {product.name}</h1>}
+            {!product.id && <h1>{t('product.products.form.new')}</h1>}
             <div className="card animated fadeInDown">
                 {loading && (
                     <div className="text-center">
@@ -131,41 +133,41 @@ const NewProduct = () => {
                         <input
                             defaultValue={product.type}
                             onChange={e => setProduct({ ...product, type: e.target.value })}
-                            placeholder="Type"
+                            placeholder={t('product.products.form.type')}
                         />
                         <input
                             defaultValue={product.name}
                             onChange={e => setProduct({ ...product, name: e.target.value })}
-                            placeholder="Name"
+                            placeholder={t('product.products.form.name')}
                         />
                         <TextEditor
                             value={product}
                             setValue={setProduct}
                             height={250}
-                            placeholder='Product summary'
+                            placeholder={t('product.products.form.summary')}
                             type='summary'
                         />
                         <TextEditor
                             value={product}
                             setValue={setProduct}
                             height={500}
-                            placeholder='Product details'
+                            placeholder={t('product.products.form.detail')}
                             type='detail'
                         />
                         <input
                             defaultValue={product.regular_price}
                             onChange={e => setProduct({ ...product, regular_price: e.target.value })}
-                            placeholder="Regular Price"
+                            placeholder={t('product.products.form.regular_price')}
                         />
                         <input
                             defaultValue={product.sale_price}
                             onChange={e => setProduct({ ...product, sale_price: e.target.value })}
-                            placeholder="Sale Price"
+                            placeholder={t('product.products.form.sale_price')}
                         />
                         <input
                             defaultValue={product.quantity}
                             onChange={e => setProduct({ ...product, stock_quantity: e.target.value })}
-                            placeholder="Stocks"
+                            placeholder={t('product.products.form.stocks')}
                         />
                         <select name="prd-cat"
                             onChange={e => setProduct({ ...product, category: e.target.value })}
@@ -173,7 +175,7 @@ const NewProduct = () => {
                                 width: '500px'
                             }}
                         >
-                            <option value={null}>Categories</option>
+                            <option value={null}>{t('product.products.form.categories')}</option>
                             {cat && cat.map(cat => <option value={cat.id}>
                                 {cat.name}
                             </option>)}
@@ -189,7 +191,7 @@ const NewProduct = () => {
                                     ...product, 
                                     attribute_type: e.target.value
                                 })}
-                            >Attribute Types</option>
+                            >{t('product.products.form.attribute_type')}</option>
                             <option 
                                 value="size"
                                 onChange={e => setProduct({
@@ -206,27 +208,27 @@ const NewProduct = () => {
                             >Color</option>
                         </select>
                         <input
-                            defaultValue={product.attributes && product.attributes.at(0).name}
+                            // defaultValue={product.attributes && product.attributes.at(0).name}
                             onChange={e => setProduct({ 
                                 ...product, 
                                 attribute_name: e.target.value 
                             })}
-                            placeholder="Attribute Name"
+                            placeholder={t('product.products.form.attribute_name')}
                         />
                         <input
-                            defaultValue={product.attributes && product.attributes.at(0).code}
+                            // defaultValue={product.attributes && product.attributes.at(0).code}
                             onChange={e => setProduct({ 
                                 ...product, 
                                 attribute_code: e.target.value 
                             })}
-                            placeholder="Attribute Code"
+                            placeholder={t('product.products.form.attribute_code')}
                         />
                         <div style={{
                             width: '50%',
                         }}>
                             <img
                                 src={product.images}
-                                alt="Ảnh được hiển thị ở đây "
+                                alt={t('product.products.form.image_alt')}
                                 style={{ width: '700px' }}
                             />
                         </div>
@@ -238,7 +240,7 @@ const NewProduct = () => {
                                 setProduct({ ...product, images: event.target.files[0] });
                             }}
                         />
-                        <button className="btn">Save</button>
+                        <button className="btn">{t('product.products.form.save')}</button>
                     </form>
                 )}
             </div>

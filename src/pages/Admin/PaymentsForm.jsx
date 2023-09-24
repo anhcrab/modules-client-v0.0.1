@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axiosClient from "../../axios-client.js"
 import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function PaymentForm() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function PaymentForm() {
   const [errors, setErrors] = useState(null)
   const [loading, setLoading] = useState(false)
   const { setNotification } = useStateContext()
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     axiosClient.get('/banks').then(({data}) => setBank(data))
@@ -69,8 +71,8 @@ export default function PaymentForm() {
 
   return (
     <>
-      {payment.id && <h1>Update payment: {payment.name}</h1>}
-      {!payment.id && <h1>New payment</h1>}
+      {payment.id && <h1>{t('shop.payments.form.update')}: {payment.name}</h1>}
+      {!payment.id && <h1>{t('shop.payments.form.new')}</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -92,7 +94,7 @@ export default function PaymentForm() {
                 ...payment,
                 type: e.target.value
               })}
-              placeholder="Name"
+              placeholder={t('shop.payments.form.type')}
             />
             {payment.type === 'Banking' ? <select onChange={e => {
               let id = e.target.value
@@ -108,7 +110,7 @@ export default function PaymentForm() {
                 number: det.number
               }})
             }}>
-              <option value={null}>Choose Bank</option>
+              <option value={null}>{t('shop.payments.form.bank')}</option>
               {bank.map(b => <option value={b.id}>{b.name} --- {b.number}</option>)}
             </select> : ''}
             {/* --------- */}
@@ -125,7 +127,7 @@ export default function PaymentForm() {
                 address: det.address
               }})
             }}>
-              <option value={null}>Choose Store</option>
+              <option value={null}>{t('shop.payments.form.store')}</option>
               {store.map(s => <option value={s.id}>{s.name} --- {s.address}</option>)}
             </select> : ''}
             {/* ---------- */}
@@ -134,10 +136,10 @@ export default function PaymentForm() {
               onChange={(e) => setpayment({
                 ...payment,
                 detail: e.target.value
-              })} placeholder="Detail"
+              })} placeholder={t('shop.payments.form.detail')}
             /> : ''}
             <br />
-            <button className="btn">Save</button>
+            <button className="btn">{t('shop.payments.form.save')}</button>
           </form>
         )}
       </div>

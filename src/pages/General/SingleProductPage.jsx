@@ -5,6 +5,7 @@ import ShopHeader from "../../components/ShopHeader"
 import { StateContext } from "../../context/ContextProvider"
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../../../firebase.config'
+import { useTranslation } from "react-i18next"
 
 const SingleProductPage = () => {
     const [headerCart, setHeaderCart] = useState(false)
@@ -16,6 +17,7 @@ const SingleProductPage = () => {
     const [profile, setProfile] = useState()
     const [textarea, setTextarea] = useState('')
     const [user, setUser] = useState({})
+    const { t } = useTranslation('single_product')
     useEffect(() => {
         axiosClient.get(`/products/${slug}`)
             .then(res => {
@@ -76,14 +78,14 @@ const SingleProductPage = () => {
                             // })
                         setHeaderCart(!headerCart)
                         setHide(false)
-                    }}>Add to Cart</button>
-                    <h5>Mô tả ngắn</h5>
+                    }}>{t('add_to_cart')}</button>
+                    <h5>{t('summary')}</h5>
                     <div dangerouslySetInnerHTML={{
                         __html: data.product && data.product.summary
                     }}></div>
                     <span>
                         {data.product &&
-                            `Từ khóa: ${data.product.name}, ${data.product.category}, ${data.product.attributes.map(a => a.name)}`}
+                            `${t('keyword')}: ${data.product.name}, ${data.product.category}, ${data.product.attributes.map(a => a.name)}`}
                     </span>
                 </div>
             </div>
@@ -92,7 +94,7 @@ const SingleProductPage = () => {
                     width: '100%',
                     borderBottom: '1px solid #ccc',
                     padding: '20px 0'
-                }}>Mô tả đầy đủ</h3>
+                }}>{t('detail')}</h3>
                 <p
                     dangerouslySetInnerHTML={{
                         __html: data.product && data.product.detail
@@ -102,7 +104,7 @@ const SingleProductPage = () => {
                     width: '100%',
                     padding: '0'
                 }}>
-                    <h3>Bình luận</h3>
+                    <h3>{t('comment')}</h3>
                     <h4 style={{
                         width: '250px'
                     }}>
@@ -111,7 +113,7 @@ const SingleProductPage = () => {
                             console.log(client);
                             setUser(client)
                         }}>
-                            Đăng nhập bằng Facebook
+                            {t('fb_login')}
                         </button> : ''}
                     </h4>
                     <textarea
@@ -137,7 +139,7 @@ const SingleProductPage = () => {
                                 window.location.reload()
                             })
                             .catch(err => console.log(err))
-                    }}>Gửi</button>
+                    }}>{t('send')}</button>
                 </div>
                 {/* <div>{comments.length !== 0 ? comments.map(c => {
                     return (
@@ -158,7 +160,7 @@ const SingleProductPage = () => {
                     width: '100%',
                     borderTop: '1px solid #ccc',
                     padding: '20px 0'
-                }}>Sản phẩm liên quan</h3>
+                }}>{t('related')}</h3>
                 <div className="product-list-container" style={{
                     display: 'flex',
                     width: '80%'
@@ -184,7 +186,7 @@ const SingleProductPage = () => {
                 <h3 style={{
                     width: '100%',
                     padding: '20px 0'
-                }}>Sản phẩm khác</h3>
+                }}>{t('another')}</h3>
                 <div className="product-list-container" style={{
                     display: 'flex',
                     gap: '12px',

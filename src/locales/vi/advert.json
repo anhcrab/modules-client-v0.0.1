@@ -1,0 +1,19 @@
+{
+  "heading": "Quảng Cáo",
+  "add": "Thêm mới",
+  "name": "Tên",
+  "type": "Loại",
+  "content": "Nội dung",
+  "url": "URL chuyển hướng",
+  "placements": "Vị trí",
+  "status": "Trạng thái",
+  "style": "Kiểu",
+  "actions": "Hành động",
+  "edit": "Chỉnh sửa",
+  "delete": "Xóa",
+  "update": "Cập nhật QC",
+  "new": "QC mới",
+  "choose_type": "Chọn loại quảng cáo",
+  "choose_place": "Chọn vị trí đặt quảng cáo",
+  "save": "Lưu"
+}

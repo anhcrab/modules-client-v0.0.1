@@ -1,0 +1,308 @@
+{
+  "logout": "Logout",
+  "dashboard": {
+    "title": "Dashboard",
+    "back_link": "Visit Shop"
+  },
+  "users": {
+    "title": "Users",
+    "table": {
+      "add": "Add new",
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "created": "Created Date",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "new": "New User",
+      "update": "Update User",
+      "name": "Name",
+      "email":"Email",
+      "password": "Password",
+      "password_confirm": "Password Confirmation",
+      "save": "Save"
+    }
+  },
+  "media": {
+    "title": "Media"
+  },
+  "product": {
+    "name": "product",
+    "types": {
+      "title": "Types",
+      "table": {
+        "add": "Add new", 
+        "name": "Name",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Type",
+        "update": "Update Type",
+        "name": "Name",
+        "save": "Save"
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "table": {
+        "add": "Add new",
+        "id": "ID",
+        "parent_id": "Parent ID",
+        "name": "Name",
+        "slug": "Slug",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Category",
+        "update": "Update Category",
+        "name": "Name",
+        "choose":"Choose parent category",
+        "save": "Save"
+      }
+    },
+    "attributes": {
+      "title": "Attribute",
+      "table": {
+        "add": "Add new",
+        "id": "ID",
+        "type": "Type",
+        "name": "Name",
+        "code": "Code",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Attribute",
+        "update": "Update Attribute",
+        "type": "Type",
+        "name": "Name",
+        "Code":"Code",
+        "save": "Save"
+      }
+    },
+    "products": {
+      "title": "Products",
+      "table": {
+        "add": "Add new",
+        "export": "Export",
+        "id": "ID",
+        "type": "Type",
+        "image": "Image",
+        "name": "Name",
+        "price": "Price",
+        "category": "Category",
+        "attribute": "Attribute",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Product",
+        "update": "Update Product",
+        "type": "Type",
+        "name": "Name",
+        "summary":"Product summary",
+        "detail":"Product detail",
+        "regular_price": "Regular Price",
+        "sale_price": "Sale Price",
+        "stocks": "Stocks",
+        "categories": "Categories",
+        "attribute_type": "Attribute Types",
+        "attribute_name": "Attribute Name",
+        "attribute_code": "Attribute Code",
+        "image_alt": "image display here",
+        "choose_image": "Upload Image",
+        "save": "Save"
+      }
+    },
+    "inventories": {
+      "title": "Inventories",
+      "filter": {
+        "types": "Types",
+        "categories": "Categories",
+        "size": "Size",
+        "color": "Color",
+        "best_seller": "Best Seller",
+        "apply": "Apply Filter"
+      },
+      "table": {
+        "id": "ID",
+        "image": "Image",
+        "name": "Name",
+        "price": "Price",
+        "quantity": "Quantity",
+        "total_sale": "Total Sale",
+        "date": "Date",
+        "actions": "Actions",
+        "edit": "Edit",
+        "apply": "Apply"
+      }
+    }
+  },
+  "shop": {
+    "name": "Shop",
+    "banks": {
+      "title": "Banks",
+      "table": {
+        "add": "Add new",
+        "id": "ID",
+        "name": "Name",
+        "number": "Number",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Bank",
+        "update": "Update Bank",
+        "name": "Name",
+        "number":"Number",
+        "save": "Save"
+      }
+    },
+    "stores": {
+      "title": "Stores",
+      "table": {
+        "add": "Add new",
+        "id": "ID",
+        "name": "Name",
+        "address": "Address",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Store",
+        "update": "Update Store",
+        "name": "Name",
+        "address":"Address",
+        "save": "Save"
+      }
+    },
+    "shippings": {
+      "title": "Shippings",
+      "table": {
+        "add": "Add new",
+        "id": "ID",
+        "name": "Name",
+        "price": "Price",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Shipping",
+        "update": "Update Shipping",
+        "name": "Name",
+        "price":"Price",
+        "save": "Save"
+      }
+    },
+    "payments": {
+      "title": "Payments",
+      "table": {
+        "add": "Add new",
+        "id": "ID",
+        "type": "Type",
+        "detail": "Detail",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "new": "New Payment",
+        "update": "Update payment",
+        "type": "Type",
+        "detail": "Detail",
+        "bank": "Choose Banks",
+        "store": "Choose Stores",
+        "save": "Save"
+      }
+    }
+  },
+  "coupons": {
+    "title": "Coupons",
+    "table": {
+      "add": "Add new",
+      "export": "Export",
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "max_uses": "Max Uses",
+      "max_uses_user": "Max Uses per User",
+      "type": "Type",
+      "discount": "Discount",
+      "min": "Min",
+      "status": "Status",
+      "starts": "Starts",
+      "expires": "Expires",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "new": "New Coupon",
+      "update": "Update Coupon",
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "max_uses": "Max Uses",
+      "max_uses_user": "Max Uses per User",
+      "type": "Type",
+      "discount": "Discount Amount",
+      "min": "Min Amount",
+      "status": "Status",
+      "starts": "Starts",
+      "expires": "Expires",
+      "save": "Save"
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "table": {
+      "sort": {
+        "head": "Sort by",
+        "day": "by Day",
+        "month": "by Month",
+        "year": "by Year"
+      },
+      "export": "Export",
+      "id": "ID",
+      "items": "Items",
+      "total_price": "Total Price",
+      "fullname": "Fullname",
+      "address": "Address",
+      "phone": "Phone",
+      "date": "Date",
+      "status": "Status",
+      "update": "Update"
+    }
+  },
+  "transactions": {
+    "title": "Transactions",
+    "table": {
+      "export": "Export",
+      "id": "ID",
+      "order_id": "Order ID",
+      "intent": "Intent",
+      "payer_id": "Payer ID",
+      "name": "Name",
+      "country_code": "Country Code",
+      "email": "Email",
+      "status": "Status",
+      "date": "Date",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "contact": "Contacts"
+}

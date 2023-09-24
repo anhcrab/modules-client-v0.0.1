@@ -1,0 +1,308 @@
+{
+  "logout": "Đăng xuất",
+  "dashboard": {
+    "title": "Bảng tin",
+    "back_link": "Xem Cửa Hàng"
+  },
+  "users": {
+    "title": "Tài khoản",
+    "table": {
+      "add": "Thêm mới",
+      "id": "ID",
+      "name": "Tên",
+      "email": "Email",
+      "created": "Ngày tạo",
+      "actions": "Hành động",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa"
+    },
+    "form": {
+      "new": "Thêm tài khoản mới",
+      "update": "Chỉnh sửa tài khoản",
+      "name": "Tên",
+      "email":"Email",
+      "password": "Mật khẩu",
+      "password_confirm": "Gõ lại mật khẩu",
+      "save": "Lưu"
+    }
+  },
+  "media": {
+    "title": "Đa phương tiện"
+  },
+  "product": {
+    "name": "Sản phẩm",
+    "types": {
+      "title": "Loại",
+      "table": {
+        "add": "Thêm mới",
+        "name": "Tên",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Loại mới",
+        "update": "Cập nhật loại",
+        "name": "Tên",
+        "save": "Lưu"
+      }
+    },
+    "categories": {
+      "title": "Danh mục",
+      "table": {
+        "add": "Thêm mới",
+        "parent_id": "ID Cha",
+        "name": "Tên",
+        "slug": "Slug",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Danh mục mới",
+        "update": "Cập nhật danh mục",
+        "name": "Tên",
+        "choose":"Chọn danh mục cha",
+        "save": "Lưu"
+      }
+    },
+    "attributes": {
+      "title": "Thuộc tính",
+      "table": {
+        "add": "Thêm mới",
+        "id": "ID",
+        "type": "Loại",
+        "name": "Tên",
+        "code": "Mã",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Thuộc tính mới",
+        "update": "Cập nhật thuộc tính",
+        "type": "Loại",
+        "name": "Tên",
+        "Code": "Mã",
+        "save": "Lưu"
+      }
+    },
+    "products": {
+      "title": "Tất cả sản phẩm",
+      "table": {
+        "add": "Thêm mới",
+        "export": "Xuất excel",
+        "id": "ID",
+        "type": "Loại",
+        "image": "Ảnh",
+        "name": "Tên",
+        "price": "Giá",
+        "category": "Danh mục",
+        "attribute": "Thuộc tính",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Sản phẩm mới",
+        "update": "Cập nhật sản phẩm",
+        "type": "Loại",
+        "name": "Tên",
+        "summary": "Mô tả ngắn",
+        "detail": "Mô tả chi tiết",
+        "regular_price": "Giá thường",
+        "sale_price": "Giá chiết khấu",
+        "stocks": "lượng hàng",
+        "categories": "Danh mục",
+        "attribute_type": "Loại thuộc tính",
+        "attribute_name": "Tên thuộc tính",
+        "attribute_code": "Mã thuộc tính",
+        "image_alt": "Ảnh hiển thị ở đây",
+        "choose_image": "Tải ảnh lên",
+        "save": "Lưu"
+      }
+    },
+    "inventories": {
+      "title": "Kho hàng",
+      "filter": {
+        "types": "Loại",
+        "categories": "Danh mục",
+        "size": "Kích thước",
+        "color": "Màu sắc",
+        "best_seller": "Bán chạy",
+        "apply": "Áp dụng bộ lọc"
+      },
+      "table": {
+        "id": "ID",
+        "image": "Ảnh",
+        "name": "Tên",
+        "price": "Giá",
+        "quantity": "Số lượng",
+        "total_sale": "Tổng bán",
+        "date": "Thời gian",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "apply": "Áp dụng"
+      }
+    }
+  },
+  "shop": {
+    "name": "Cửa Hàng",
+    "banks": {
+      "title": "Ngân hàng",
+      "table": {
+        "add": "Thêm mới",
+        "id": "ID",
+        "name": "Tên",
+        "number": "Mã Số Thẻ",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Ngân hàng mới",
+        "update": "Cập nhật ngân hàng",
+        "name": "Tên",
+        "number":"Mã Số Thẻ",
+        "save": "Lưu"
+      }
+    },
+    "stores": {
+      "title": "Chi Nhánh",
+      "table": {
+        "add": "Thêm mới",
+        "id": "ID",
+        "name": "Tên",
+        "address": "Địa chỉ",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Chi nhánh mới",
+        "update": "Cập nhật chi nhánh",
+        "name": "Tên",
+        "address":"Địa chỉ",
+        "save": "Lưu"
+      }
+    },
+    "shippings": {
+      "title": "Vận chuyển",
+      "table": {
+        "add": "Thêm mới",
+        "id": "ID",
+        "name": "Tên",
+        "price": "Giá",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Phương thức vận chuyển mới",
+        "update": "Cập nhật phương thức vận chuyển",
+        "name": "Tên",
+        "price":"Giá",
+        "save": "Lưu"
+      }
+    },
+    "payments": {
+      "title": "Thanh toán",
+      "table": {
+        "add": "Thêm mới",
+        "id": "ID",
+        "type": "Loại",
+        "detail": "Chi tiết",
+        "actions": "Hành động",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "form": {
+        "new": "Phương thức thanh toán mới",
+        "update": "Cập nhật phương thức thanh toán",
+        "type": "Loại",
+        "detail": "Chi tiết",
+        "bank": "Chọn Ngân hàng",
+        "store": "Chọn Chi nhánh",
+        "save": "Lưu"
+      }
+    }
+  },
+  "coupons": {
+    "title": "Mã Khuyến Mãi",
+    "table": {
+      "add": "Thêm mới",
+      "export": "Xuất excel",
+      "id": "ID",
+      "code": "Mã",
+      "name": "Tên",
+      "description": "Mô tả",
+      "max_uses": "Số lượt sử dụng",
+      "max_uses_user": "Lượt sử dụng cá nhân",
+      "type": "Loại",
+      "discount": "Chiết khấu",
+      "min": "Tối thiểu",
+      "status": "Trạng thái",
+      "starts": "Ngày bắt đầu",
+      "expires": "Hạn sử dụng",
+      "actions": "Hành động",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa"
+    },
+    "form": {
+      "new": "Mã khuyến mãi mới",
+      "update": "Cập nhật mã khuyến mãi",
+      "code": "Mã",
+      "name": "Tên",
+      "description": "Mô tả",
+      "max_uses": "Lượt sử dụng tối đa",
+      "max_uses_user": "Lượt sử dụng tối đa cho mỗi cá nhân",
+      "type": "Loại",
+      "discount": "Lượng chiết khấu",
+      "min": "Giá trị tối thiểu",
+      "status": "Trạng thái",
+      "starts": "bắt đầu",
+      "expires": "Hạn sử dụng",
+      "save": "Lưu"
+    }
+  },
+  "orders": {
+    "title": "Đơn hàng",
+    "table": {
+      "sort": {
+        "head": "Thống kê theo",
+        "day": "Theo Ngày",
+        "month": "Theo Tháng",
+        "year": "Theo Năm"
+      },
+      "export": "Xuất excel",
+      "id": "ID",
+      "items": "Các món hàng",
+      "total_price": "Tổng tiền",
+      "fullname": "Họ Tên",
+      "address": "Địa chỉ",
+      "phone": "Số điện thoại",
+      "date": "Thời gian",
+      "status": "Trạng thái",
+      "update": "Cập nhật"
+    }
+  },
+  "transactions": {
+    "title": "Giao dịch",
+    "table": {
+      "export": "Xuất excel",
+      "id": "ID",
+      "order_id": "Mã",
+      "intent": "Mục đích",
+      "payer_id": "ID người trả",
+      "name": "Họ Tên",
+      "country_code": "Mã Quốc Gia",
+      "email": "Email",
+      "status": "Trạng thái",
+      "date": "Ngày",
+      "actions": "Hành động",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa"
+    }
+  },
+  "contact": "Liên Hệ"
+}

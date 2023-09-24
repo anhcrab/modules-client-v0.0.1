@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../axios-client.js";
-import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider.jsx";
+import ExportToCsv from '../../components/ExportToCsv.jsx'
+import { useTranslation } from "react-i18next";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [displayOrders, setDisplayOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getOrders();
@@ -40,10 +42,8 @@ const Orders = () => {
           alignItems: "center",
         }}
       >
-        <h1>orders</h1>
-        <Link className="btn-add" to="/orders/new">
-          Add new
-        </Link>
+        <h1>{t('orders.title')}</h1>
+        <ExportToCsv className="btn-add" data={orders} filename={`transaction_${new Date(Date.now()).toUTCString()}.csv`} />
       </div>
       <div className="card animated fadeInDown">
         <table>
@@ -100,23 +100,23 @@ const Orders = () => {
                     display: "none",
                   }}
                 >
-                  Thống kê theo
+                  {t('orders.table.sort.head')}
                 </option>
-                <option value="sort-by-date">Theo Ngày</option>
-                <option value="sort-by-month">Theo Tháng</option>
-                <option value="sort-by-year">Theo Năm</option>
+                <option value="sort-by-date">{t('orders.table.sort.day')}</option>
+                <option value="sort-by-month">{t('orders.table.sort.month')}</option>
+                <option value="sort-by-year">{t('orders.table.sort.year')}</option>
               </select>
             </div>
             <tr>
               <th>ID</th>
-              <th>Items</th>
-              <th>Total Price</th>
-              <th>Full Name</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>date</th>
-              <th>Status</th>
-              <th>Update</th>
+              <th>{t('orders.table.items')}</th>
+              <th>{t('orders.table.total_price')}</th>
+              <th>{t('orders.table.fullname')}</th>
+              <th>{t('orders.table.address')}</th>
+              <th>{t('orders.table.phone')}</th>
+              <th>{t('orders.table.date')}</th>
+              <th>{t('orders.table.status')}</th>
+              <th>{t('orders.table.update')}</th>
             </tr>
           </thead>
           {loading && (

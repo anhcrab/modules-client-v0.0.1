@@ -1,0 +1,10 @@
+{
+  "heading": "CỬA HÀNG",
+  "filter": {
+    "title": "Chọn Giá",
+    "under": "Dưới",
+    "upper": "Trên"
+  },
+  "price": "giá",
+  "look": "Xem"
+}

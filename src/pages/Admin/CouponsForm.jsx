@@ -4,6 +4,7 @@ import { useStateContext } from "../../context/ContextProvider";
 import axiosClient from "../../axios-client";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useTranslation } from "react-i18next";
 
 const modules = {
   toolbar: [
@@ -41,6 +42,7 @@ export default function CouponsForm() {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+  const { t } = useTranslation("admin");
 
   if (id) {
     useEffect(() => {
@@ -77,8 +79,8 @@ export default function CouponsForm() {
       axiosClient
         .post("/coupons", coupons)
         .then((res) => {
-          setNotification('coupons was successfully created')
-          navigate('/coupons')
+          setNotification("coupons was successfully created");
+          navigate("/coupons");
           console.log(res.data);
         })
         .catch((err) => {
@@ -99,12 +101,16 @@ export default function CouponsForm() {
 
   useEffect(() => {
     console.log(coupons);
-  }, [coupons])
+  }, [coupons]);
 
   return (
     <>
-      {coupons.id && <h1>Update coupons: {coupons.name}</h1>}
-      {!coupons.id && <h1>New coupons</h1>}
+      {coupons.id && (
+        <h1>
+          {t("coupons.form.update")}: {coupons.name}
+        </h1>
+      )}
+      {!coupons.id && <h1>{t("coupons.form.new")}</h1>}
       <div className="card animated fadeInDown">
         {loading && <div className="text-center">Loading...</div>}
         {errors && (
@@ -119,73 +125,73 @@ export default function CouponsForm() {
             <input
               defaultValue={coupons.code}
               onChange={handleOnChange}
-              placeholder="Code"
+              placeholder={t("coupons.form.code")}
               name="code"
             />
             <input
               defaultValue={coupons.name}
               onChange={handleOnChange}
-              placeholder="Name"
+              placeholder={t("coupons.form.name")}
               name="name"
             />
             <input
               defaultValue={coupons.max_uses}
               onChange={handleOnChange}
-              placeholder="Max Uses"
+              placeholder={t("coupons.form.max_uses")}
               name="max_uses"
             />
             <input
               defaultValue={coupons.max_uses_user}
               onChange={handleOnChange}
-              placeholder="Max Uses User"
+              placeholder={t("coupons.form.max_uses_user")}
               name="max_uses_user"
             />
             <input
               defaultValue={coupons.type}
               onChange={handleOnChange}
-              placeholder="Type"
+              placeholder={t("coupons.form.type")}
               name="type"
             />
             <input
               defaultValue={coupons.discount_amount}
               onChange={handleOnChange}
-              placeholder="Discount Amount"
+              placeholder={t("coupons.form.discount")}
               name="discount_amount"
             />
             <input
               defaultValue={coupons.min_amount}
               onChange={handleOnChange}
-              placeholder="Min Amount"
+              placeholder={t("coupons.form.min")}
               name="min_amount"
             />
             <input
               defaultValue={coupons.status}
               onChange={handleOnChange}
-              placeholder="Status"
+              placeholder={t("coupons.form.status")}
               name="status"
             />
             <input
               defaultValue={coupons.starts_at}
               onChange={handleOnChange}
-              placeholder="Start At"
+              placeholder={t("coupons.form.starts")}
               name="starts_at"
               type="date"
             />
             <input
               defaultValue={coupons.expires_at}
               onChange={handleOnChange}
-              placeholder="Expires At"
+              placeholder={t("coupons.form.expires")}
               name="expires_at"
               type="date"
             />
             <ReactQuill
               theme="snow"
               defaultValue={coupons.description}
-              onChange={e => {
+              onChange={(e) => {
                 setcoupons({
                   ...coupons,
-                  description: e
-                })
+                  description: e,
+                });
               }}
               modules={modules}
               style={{
@@ -195,10 +201,10 @@ export default function CouponsForm() {
                 marginTop: "10px",
                 transition: "all 0.3s",
               }}
-              placeholder='Description'
+              placeholder={t("coupons.form.description")}
             />
             <br />
-            <button className="btn">Save</button>
+            <button className="btn">{t("coupons.form.save")}</button>
           </form>
         )}
       </div>

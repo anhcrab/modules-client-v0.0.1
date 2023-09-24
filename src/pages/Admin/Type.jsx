@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import axiosClient from "../../axios-client.js";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function Type() {
   const [types, settypes] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     gettypes();
@@ -44,9 +46,9 @@ export default function Type() {
           alignItems: "center",
         }}
       >
-        <h1>types</h1>
+        <h1>{t('product.types.title')}</h1>
         <Link className="btn-add" to="/product-type/new">
-          Add new
+          {t('product.types.table.add')}
         </Link>
       </div>
       <div className="card animated fadeInDown">
@@ -54,8 +56,8 @@ export default function Type() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>Actions</th>
+              <th>{t('product.types.table.name')}</th>
+              <th>{t('product.types.table.actions')}</th>
             </tr>
           </thead>
           {loading && (
@@ -76,14 +78,14 @@ export default function Type() {
                     <td>{u.name}</td>
                     <td>
                       <Link className="btn-edit" to={"/product-type/" + u.id}>
-                        Edit
+                        {t('product.types.table.edit')}
                       </Link>
                       &nbsp;
                       <button
                         className="btn-delete"
                         onClick={(ev) => onDeleteClick(u)}
                       >
-                        Delete
+                        {t('product.types.table.delete')}
                       </button>
                     </td>
                   </tr>

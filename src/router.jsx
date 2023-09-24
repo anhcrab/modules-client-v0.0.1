@@ -33,6 +33,10 @@ import OrderClient from "./pages/General/OrdersClient.jsx";
 import Transaction from "./pages/Admin/Transaction.jsx";
 import Coupons from "./pages/Admin/Coupons.jsx";
 import CouponsForm from "./pages/Admin/CouponsForm.jsx";
+import Contact from "./pages/General/Contact.jsx";
+import Advert from "./pages/Admin/Advert.jsx";
+import AdvertForm from "./pages/Admin/AdvertForm.jsx";
+import Contacts from "./pages/Admin/Contacts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -178,6 +182,22 @@ const router = createBrowserRouter([
       {
         path: '/coupons/:id',
         element: <CouponsForm key={'Update'} />
+      },
+      {
+        path: '/advs',
+        element: <Advert />
+      },
+      {
+        path: '/advs/new',
+        element: <AdvertForm key={'New'} />
+      },
+      {
+        path: '/advs/:id',
+        element: <AdvertForm key={'Update'} />
+      },
+      {
+        path: '/contacts',
+        element: <Contacts />
       }
     ]
   },
@@ -185,7 +205,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <GuestLayout />,
     children: [
-
       {
         path: '/login',
         element: <Login />
@@ -215,6 +234,10 @@ const router = createBrowserRouter([
   {
     path: '/orders',
     element: <OrderClient />
+  },
+  {
+    path: '/contact',
+    element: <Contact/>
   },
   {
     path: "*",

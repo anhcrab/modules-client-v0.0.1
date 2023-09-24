@@ -1,0 +1,20 @@
+{
+  "heading": "Contact Us",
+  "table": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "subject": "Subject",
+    "message": "Message",
+    "clear": "Clear"
+  },
+  "form": {
+    "title": "Send us a message",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "send": "Send"
+  },
+  "info": {
+    "title": "Contact Information"
+  }
+}

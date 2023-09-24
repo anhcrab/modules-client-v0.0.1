@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js"
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function AttributesForm() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function AttributesForm() {
   const [errors, setErrors] = useState(null)
   const [loading, setLoading] = useState(false)
   const {setNotification} = useStateContext()
+  const { t } = useTranslation('admin')
 
   if (id) {
     useEffect(() => {
@@ -63,8 +65,8 @@ export default function AttributesForm() {
 
   return (
     <>
-      {attributes.id && <h1>Update attributes: {attributes.name}</h1>}
-      {!attributes.id && <h1>New attributes</h1>}
+      {attributes.id && <h1>{t('product.attributes.form.update')}: {attributes.name}</h1>}
+      {!attributes.id && <h1>{t('product.attributes.form.new')}</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -81,13 +83,13 @@ export default function AttributesForm() {
         {!loading && (
           <form onSubmit={onSubmit}>
             <select value={attributes.type} onChange={e => setattributes({...attributes, type: e.target.value})}>
-              <option value={null}>Type</option>
+              <option value={null}>{t('product.attributes.form.type')}</option>
               <option value="size">Size</option>
               <option value="color">Color</option>
             </select>
-            <input value={attributes.name} onChange={(e) => setattributes({...attributes, name: e.target.value})} placeholder="Name" />
-            <input value={attributes.code} onChange={(e) => setattributes({...attributes, code: e.target.value})} placeholder="Code" />
-            <button className="btn">Save</button>
+            <input value={attributes.name} onChange={(e) => setattributes({...attributes, name: e.target.value})} placeholder={t('product.attributes.form.name')} />
+            <input value={attributes.code} onChange={(e) => setattributes({...attributes, code: e.target.value})} placeholder={t('product.attributes.form.code')} />
+            <button className="btn">{t('product.attributes.form.save')}</button>
           </form>
         )}
       </div>

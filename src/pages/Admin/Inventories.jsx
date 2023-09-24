@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosClient from "../../axios-client.js";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 // import img from '../assets/logo-pis.png'
 
 const Inventories = () => {
@@ -21,6 +22,7 @@ const Inventories = () => {
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
   const [edit, setEdit] = useState(false);
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getinventories();
@@ -98,7 +100,7 @@ const Inventories = () => {
           alignItems: "center",
         }}
       >
-        <h1>Inventories</h1>
+        <h1>{t('product.inventories.title')}</h1>
         {/* <Link className="btn-add" to="/inventories/new">Add new</Link> */}
       </div>
       <div className="card animated fadeInDown">
@@ -111,7 +113,7 @@ const Inventories = () => {
                     setChoices({ ...choices, type: e.target.value })
                   }
                 >
-                  <option value={""}>Types</option>
+                  <option value={""}>{t('product.inventories.filter.types')}</option>
                   {types.map((type) => (
                     <option value={type.name}>{type.name}</option>
                   ))}
@@ -123,7 +125,7 @@ const Inventories = () => {
                     setChoices({ ...choices, category: e.target.value })
                   }
                 >
-                  <option value={""}>Categories</option>
+                  <option value={""}>{t('product.inventories.filter.categories')}</option>
                   {categories.map((cat) => (
                     <option value={cat.name}>{cat.name}</option>
                   ))}
@@ -135,7 +137,7 @@ const Inventories = () => {
                     setChoices({ ...choices, size: e.target.value })
                   }
                 >
-                  <option value={""}>Size</option>
+                  <option value={""}>{t('product.inventories.filter.size')}</option>
                   {attributes.map((a) => {
                     if (a.type === "size") {
                       return <option value={a.name}>{a.name}</option>;
@@ -149,7 +151,7 @@ const Inventories = () => {
                     setChoices({ ...choices, color: e.target.value })
                   }
                 >
-                  <option value={""}>Color</option>
+                  <option value={""}>{t('product.inventories.filter.color')}</option>
                   {attributes.map((a) => {
                     if (a.type === "color") {
                       return <option value={a.name}>{a.name}</option>;
@@ -165,7 +167,7 @@ const Inventories = () => {
                 }}
               >
                 <input type="checkbox" id="best-seller" />
-                <label htmlFor="best-seller">Best Seller</label>
+                <label htmlFor="best-seller">{t('product.inventories.filter.best_seller')}</label>
               </th>
               <th style={{ backgroundColor: "white" }}>
                 <button
@@ -174,19 +176,19 @@ const Inventories = () => {
                     setFiltered(filter(inventories));
                   }}
                 >
-                  Apply filter
+                  {t('product.inventories.filter.apply')}
                 </button>
               </th>
             </tr>
             <tr>
               <th>ID</th>
-              <th>image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total Sale</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th>{t('product.inventories.table.image')}</th>
+              <th>{t('product.inventories.table.name')}</th>
+              <th>{t('product.inventories.table.price')}</th>
+              <th>{t('product.inventories.table.quantity')}</th>
+              <th>{t('product.inventories.table.total_sale')}</th>
+              <th>{t('product.inventories.table.date')}</th>
+              <th>{t('product.inventories.table.actions')}</th>
             </tr>
           </thead>
           {loading && (
@@ -236,7 +238,7 @@ const Inventories = () => {
                           display: edit ? 'none' : "block"
                         }}
                       >
-                        Edit
+                        {t('product.inventories.table.edit')}
                       </button>
                       <button
                         className="btn-add"
@@ -254,7 +256,7 @@ const Inventories = () => {
                           display: edit ? 'block' : 'none'
                         }}
                       >
-                        Apply
+                        {t('product.inventories.table.apply')}
                       </button>
                     </td>
                   </tr>

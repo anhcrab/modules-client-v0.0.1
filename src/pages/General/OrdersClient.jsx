@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import ShopHeader from "../../components/ShopHeader";
 import axiosClient from "../../axios-client";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const OrderClient = () => {
   const [orders, setOrders] = useState([]);
+  const { t } = useTranslation('order')
 
   useEffect(() => {
     axiosClient
@@ -38,17 +40,17 @@ const OrderClient = () => {
               width: "1140px",
             }}
           >
-            <h1>orders</h1>
+            <h1>{t('heading')}</h1>
           </div>
           <div className="card animated fadeInDown">
             <table>
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Items</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Return</th>
+                  <th>{t('items')}</th>
+                  <th>{t('date')}</th>
+                  <th>{t('status')}</th>
+                  <th>{t('return')}</th>
                 </tr>
               </thead>
               <tbody>

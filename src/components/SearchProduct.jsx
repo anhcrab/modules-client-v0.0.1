@@ -1,7 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 export default function SearchProduct({ slug, img, name, price }) {
+  const { t } = useTranslation()
   return (
     <Link 
     to={'/shop/' + slug}
@@ -17,7 +19,7 @@ export default function SearchProduct({ slug, img, name, price }) {
       padding: '20px',
       alignItems: 'center'
     }}>
-      <img src={img} alt="ảnh sản phẩm" style={{
+      <img src={img} alt={t('search.image_alt')} style={{
         width: '90px'
       }} />
       <p>{name}</p>

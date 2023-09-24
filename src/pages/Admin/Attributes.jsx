@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js";
 import {Link} from "react-router-dom";
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function Attributes() {
   const [attributes, setattributes] = useState([]);
   const [loading, setLoading] = useState(false);
   const {setNotification} = useStateContext()
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getattributes();
@@ -37,18 +39,18 @@ export default function Attributes() {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
-        <h1>attributes</h1>
-        <Link className="btn-add" to="/attributes/new">Add new</Link>
+        <h1>{t('product.attributes.title')}</h1>
+        <Link className="btn-add" to="/attributes/new">{t('product.attributes.table.add')}</Link>
       </div>
       <div className="card animated fadeInDown">
         <table>
           <thead>
           <tr>
             <th>ID</th>
-            <th>Type</th>
-            <th>Name</th>
-            <th>Code</th>
-            <th>Actions</th>
+            <th>{t('product.attributes.table.type')}</th>
+            <th>{t('product.attributes.table.name')}</th>
+            <th>{t('product.attributes.table.code')}</th>
+            <th>{t('product.attributes.table.actions')}</th>
           </tr>
           </thead>
           {loading &&
@@ -69,9 +71,9 @@ export default function Attributes() {
                 <td>{u.name}</td>
                 <td>{u.code}</td>
                 <td>
-                  <Link className="btn-edit" to={'/attributes/' + u.id}>Edit</Link>
+                  <Link className="btn-edit" to={'/attributes/' + u.id}>{t('product.attributes.table.edit')}</Link>
                   &nbsp;
-                  <button className="btn-delete" onClick={() => onDeleteClick(u)}>Delete</button>
+                  <button className="btn-delete" onClick={() => onDeleteClick(u)}>{t('product.attributes.table.delete')}</button>
                 </td>
               </tr>
             ))}

@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { useStateContext } from '../../context/ContextProvider';
 import axiosClient from '../../axios-client';
 import ExportToCsv from '../../components/ExportToCsv';
+import { useTranslation } from 'react-i18next';
 
 export default function Transaction() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext()
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getTransactions();
@@ -39,7 +41,7 @@ export default function Transaction() {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
-        <h1>Transactions</h1>
+        <h1>{t('transactions.title')}</h1>
         <ExportToCsv className="btn-add" data={transactions} filename={`transaction_${new Date(Date.now()).toUTCString()}.csv`} />
       </div>
       <div className="card animated fadeInDown">
@@ -47,15 +49,15 @@ export default function Transaction() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Order ID</th>
-              <th>intent</th>
-              <th>Payer ID</th>
-              <th>Name</th>
-              <th>Country Code</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th>{t('transactions.table.order_id')}</th>
+              <th>{t('transactions.table.intent')}</th>
+              <th>{t('transactions.table.payer_id')}</th>
+              <th>{t('transactions.table.name')}</th>
+              <th>{t('transactions.table.country_code')}</th>
+              <th>{t('transactions.table.email')}</th>
+              <th>{t('transactions.table.status')}</th>
+              <th>{t('transactions.table.date')}</th>
+              <th>{t('transactions.table.actions')}</th>
             </tr>
           </thead>
           {loading &&
@@ -81,9 +83,7 @@ export default function Transaction() {
                   <td>{p.status}</td>
                   <td>{p.created_at}</td>
                   <td>
-                    <Link className="btn-edit" to={'/products/' + p.id}>Edit</Link>
-                    &nbsp;
-                    <button className="btn-delete" onClick={ev => onDeleteClick(p)}>Delete</button>
+                    <button className="btn-delete" onClick={ev => onDeleteClick(p)}>{t('transactions.table.delete')}</button>
                   </td>
                 </tr>
               ))}

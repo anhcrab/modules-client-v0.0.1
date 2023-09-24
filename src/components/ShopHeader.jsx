@@ -3,6 +3,7 @@ import axiosClient from "../axios-client";
 import { StateContext } from "../context/ContextProvider";
 import { Link } from "react-router-dom";
 import SearchContainer from "./SearchContainer";
+import { useTranslation } from "react-i18next";
 
 const ShopHeader = ({ cartState, setCartState }) => {
     const [cart, setCart] = useState({});
@@ -13,6 +14,8 @@ const ShopHeader = ({ cartState, setCartState }) => {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [searchContainer, setSearchContainer] = useState(false);
+
+    const { t, i18n } = useTranslation(['header']);
 
     useEffect(() => {
         axiosClient
@@ -86,10 +89,8 @@ const ShopHeader = ({ cartState, setCartState }) => {
                         color: "white",
                     }}
                 >
-                    shop
+                    {t('shop', { ns: 'header' })}
                 </Link>
-                <div style={{ width: "50px" }}>about</div>
-                <div style={{ width: "50px" }}>news</div>
                 <Link
                     to="/"
                     style={{
@@ -98,9 +99,18 @@ const ShopHeader = ({ cartState, setCartState }) => {
                         color: "white",
                     }}
                 >
-                    home
+                    {t('home', { ns: 'header' })}
                 </Link>
-                <div style={{ width: "50px" }}>contact</div>
+                <Link
+                    to='/contact'
+                    style={{
+                        width: "50px",
+                        textDecoration: "none",
+                        color: "white",
+                    }}
+                >
+                    {t('contact', { ns: 'header' })}
+                </Link>
                 <div
                     style={{
                         position: "relative",
@@ -110,7 +120,7 @@ const ShopHeader = ({ cartState, setCartState }) => {
                 >
                     <input
                         type="text"
-                        placeholder="Tìm kiếm..."
+                        placeholder={t('search.placeholder', { ns: 'header' })}
                         onChange={(e) => {
                             setSearchKeyword(e.target.value);
                             if (e.target.value === "") {
@@ -119,12 +129,42 @@ const ShopHeader = ({ cartState, setCartState }) => {
                                 setSearchContainer(true);
                             }
                         }}
-                        style={{
-                            // width: "500px",
-                            // marginLeft: "140px",
-                        }}
                     />
                     <SearchContainer result={searchResult} state={searchContainer} />
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "50px",
+                        fontSize: "18px",
+                        fontWeight: "500",
+                        gap: "10px",
+                        marginLeft: '40px'
+                    }}
+                >
+                    <div
+                        onClick={() => {
+                            i18n.changeLanguage("en");
+                        }}
+                        style={{
+                            cursor: "pointer",
+                            textDecoration: i18n.language === "en" ? "underline" : "none",
+                        }}
+                    >
+                        en
+                    </div>
+                    <div
+                        onClick={() => {
+                            i18n.changeLanguage("vi");
+                        }}
+                        style={{
+                            cursor: "pointer",
+                            textDecoration: i18n.language === "vi" ? "underline" : "none",
+                        }}
+                    >
+                        vi
+                    </div>
                 </div>
             </nav>
             <div
@@ -139,7 +179,7 @@ const ShopHeader = ({ cartState, setCartState }) => {
                         setHide(!hide);
                     }}
                 >
-                    Cart: {count}
+                    {t('cart.title', { ns: 'header' })}: {count}
                 </span>
                 <div
                     className={`cart-box row ${hide ? "hidden" : ""}`}
@@ -149,7 +189,7 @@ const ShopHeader = ({ cartState, setCartState }) => {
                         right: 0,
                         backgroundColor: "#fff",
                         border: "1px solid #ccc",
-                        zIndex: 10
+                        zIndex: 10,
                     }}
                 >
                     {cart.items &&
@@ -214,18 +254,18 @@ const ShopHeader = ({ cartState, setCartState }) => {
                                         });
                                     }}
                                 >
-                                    xóa
+                                    {t('cart.delete', { ns: 'header' })}
                                 </button>
                             </div>
                         ))}
-                    <span>Tổng tiền: {total}</span>
+                    <span>{t('cart.total_price', { ns: 'header' })}: {total}</span>
                     <Link
                         to={`/checkout/${window.localStorage.getItem("device")}`}
                         style={{
                             textAlign: "center",
                         }}
                     >
-                        Thanh toán
+                        {t('cart.checkout', { ns: 'header' })}
                     </Link>
                 </div>{" "}
                 <Link
@@ -236,7 +276,7 @@ const ShopHeader = ({ cartState, setCartState }) => {
                         color: "white",
                     }}
                 >
-                    orders
+                    {t('order', { ns: 'header' })}
                 </Link>
             </div>
         </header>

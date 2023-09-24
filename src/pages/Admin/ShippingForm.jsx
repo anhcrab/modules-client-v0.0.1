@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js"
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function ShippingForm() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function ShippingForm() {
   const [errors, setErrors] = useState(null)
   const [loading, setLoading] = useState(false)
   const {setNotification} = useStateContext()
+  const { t } = useTranslation('admin')
 
   if (id) {
     useEffect(() => {
@@ -62,8 +64,8 @@ export default function ShippingForm() {
 
   return (
     <>
-      {shipping.id && <h1>Update shipping: {shipping.name}</h1>}
-      {!shipping.id && <h1>New shipping</h1>}
+      {shipping.id && <h1>{t('shop.shippings.form.update')}: {shipping.name}</h1>}
+      {!shipping.id && <h1>{t('shop.shippings.form.new')}</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -85,16 +87,16 @@ export default function ShippingForm() {
                 ...shipping, 
                 name: e.target.value
               })} 
-              placeholder="Name"
+              placeholder={t('shop.shippings.form.name')}
             />
             <input 
               value={shipping.price} 
               onChange={(e) => setshipping({
                 ...shipping, 
                 price: Number.parseInt(e.target.value)
-              })} placeholder="Price" 
+              })} placeholder={t('shop.shippings.form.price')}
             />
-            <button className="btn">Save</button>
+            <button className="btn">{t('shop.shippings.form.save')}</button>
           </form>
         )}
       </div>

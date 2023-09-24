@@ -1,0 +1,20 @@
+{
+  "heading": "Liên Hệ",
+  "table": {
+    "name": "Họ và Tên",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "subject": "Tiêu đề",
+    "message": "Tin nhắn",
+    "clear": "Xóa"
+  },
+  "form": {
+    "title": "Gửi lời nhắn",
+    "fname": "Tên",
+    "lname": "Họ",
+    "send": "Gửi"
+  },
+  "info": {
+    "title": "Thông tin Liên hệ"
+  }
+}

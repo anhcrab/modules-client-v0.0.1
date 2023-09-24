@@ -1,0 +1,19 @@
+{
+  "heading": "Advertisement",
+  "add": "Add new",
+  "name": "Name",
+  "type": "Type",
+  "content": "Content",
+  "url": "Redirect URL",
+  "placements": "Placements",
+  "status": "Status",
+  "style": "Style",
+  "actions": "Actions",
+  "edit": "Edit",
+  "delete": "Delete",
+  "update": "Update Ad",
+  "new": "New Ad",
+  "choose_type": "Choose Type",
+  "choose_place": "Choose Place to put Ads",
+  "save": "Save"
+}

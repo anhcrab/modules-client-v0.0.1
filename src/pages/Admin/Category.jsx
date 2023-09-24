@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js";
 import {Link} from "react-router-dom";
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function Categories() {
   const [categories, setcategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const {setNotification} = useStateContext()
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     getcategories();
@@ -38,18 +40,18 @@ export default function Categories() {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
-        <h1>categories</h1>
-        <Link className="btn-add" to="/product-category/new">Add new</Link>
+        <h1>{t('product.categories.title')}</h1>
+        <Link className="btn-add" to="/product-category/new">{t('product.categories.table.add')}</Link>
       </div>
       <div className="card animated fadeInDown">
         <table>
           <thead>
           <tr>
             <th>ID</th>
-            <th>Parent ID</th>
-            <th>Name</th>
-            <th>Slug</th>
-            <th>Actions</th>
+            <th>{t('product.categories.table.parent_id')}</th>
+            <th>{t('product.categories.table.name')}</th>
+            <th>{t('product.categories.table.slug')}</th>
+            <th>{t('product.categories.table.actions')}</th>
           </tr>
           </thead>
           {loading &&
@@ -70,9 +72,9 @@ export default function Categories() {
                 <td>{u.name}</td>
                 <td>{u.slug}</td>
                 <td>
-                  <Link className="btn-edit" to={'/product-category/' + u.id}>Edit</Link>
+                  <Link className="btn-edit" to={'/product-category/' + u.id}>{t('product.categories.table.edit')}</Link>
                   &nbsp;
-                  <button className="btn-delete" onClick={ev => onDeleteClick(u)}>Delete</button>
+                  <button className="btn-delete" onClick={ev => onDeleteClick(u)}>{t('product.categories.table.delete')}</button>
                 </td>
               </tr>
             ))}

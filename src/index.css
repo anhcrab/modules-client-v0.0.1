@@ -1,11 +1,22 @@
 * {
     box-sizing: border-box;
 }
-html, body, #root, #defaultLayout, #guestLayout {
+
+html,
+body,
+#root,
+#defaultLayout,
+#guestLayout {
     min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     margin: 0;
 }
 
@@ -57,14 +68,16 @@ input:focus {
 
 .btn-add,
 .btn-edit,
-.btn-delete{
+.btn-delete {
     padding: 0.5rem 0.75rem;
     font-size: 14px;
     border-radius: 4px;
 }
+
 .btn-add {
     background-color: #00a762;
 }
+
 .btn-delete {
     background-color: #b72424;
 }
@@ -76,6 +89,7 @@ input:focus {
     transition: all 0.3s;
     border-radius: 6px;
 }
+
 .btn-logout:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
@@ -96,13 +110,13 @@ table {
     border-collapse: collapse;
 }
 
-table > thead > tr > th {
+table>thead>tr>th {
     text-align: left;
     padding: 0.5rem 0.5rem;
     background-color: #efefef;
 }
 
-table > tbody > tr > td {
+table>tbody>tr>td {
     padding: 0.5rem 0.5rem;
     border-bottom: 1px solid #efefef;
     white-space: nowrap;
@@ -186,7 +200,7 @@ table > tbody > tr > td {
     padding: 1rem
 }
 
-#defaultLayout aside > a {
+#defaultLayout aside a {
     display: block;
     padding: 0.75rem 1rem;
     border-radius: 6px;
@@ -195,8 +209,31 @@ table > tbody > tr > td {
     transition: all 0.2s;
 }
 
-#defaultLayout aside > a:hover {
+#defaultLayout aside a:hover {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+#defaultLayout .dropdownTitle {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+#defaultLayout .dropdownTitle:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#defaultLayout .dropdownMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    transform: all 3s ease-in;
 }
 
 #defaultLayout .content {
@@ -224,12 +261,85 @@ table > tbody > tr > td {
     animation-fill-mode: both;
 }
 
+.animated-1 {
+    -webkit-animation-duration: calc(1 * .3s);
+    animation-duration: calc(1 * .3s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.animated-2 {
+    -webkit-animation-duration: calc(2 * .3s);
+    animation-duration: calc(2 * .3s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.animated-3 {
+    -webkit-animation-duration: calc(3 * .3s);
+    animation-duration: calc(3 * .3s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.animated-4 {
+    -webkit-animation-duration: calc(4 * .2s);
+    animation-duration: calc(4 * .2s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.animated-5 {
+    -webkit-animation-duration: calc(5 * .2s);
+    animation-duration: calc(5 * .2s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+.reverse-animated-5 {
+    -webkit-animation-duration: calc(1 * .3s);
+    animation-duration: calc(1 * .3s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.reverse-animated-4 {
+    -webkit-animation-duration: calc(2 * .3s);
+    animation-duration: calc(2 * .3s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.reverse-animated-3 {
+    -webkit-animation-duration: calc(3 * .3s);
+    animation-duration: calc(3 * .3s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.reverse-animated-2 {
+    -webkit-animation-duration: calc(4 * .2s);
+    animation-duration: calc(4 * .2s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.reverse-animated-1 {
+    -webkit-animation-duration: calc(5 * .2s);
+    animation-duration: calc(5 * .2s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
 .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
 }
 
-.hidden{
+.slideDown {
+    -webkit-animation-name: slideDown;
+    animation-name: slideDown;
+}
+
+.slideUp {
+    -webkit-animation-name: slideUp;
+    animation-name: slideUp;
+}
+
+.hidden {
     display: none !important;
 }
 
@@ -238,8 +348,33 @@ table > tbody > tr > td {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-60px)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-60px)
     }
 }

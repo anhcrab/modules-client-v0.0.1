@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axiosClient from "../../axios-client.js";
 import {useStateContext} from "../../context/ContextProvider.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function CategoryForm() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function CategoryForm() {
   const [loading, setLoading] = useState(false)
   const {setNotification} = useStateContext()
   const [parents, setParents] = useState([])
+  const { t } = useTranslation('admin')
 
   useEffect(() => {
     axiosClient.get(`/categories`).then(res => setParents(res.data))
@@ -67,8 +69,8 @@ export default function CategoryForm() {
 
   return (
     <>
-      {categories.id && <h1>Update categories: {categories.name}</h1>}
-      {!categories.id && <h1>New categories</h1>}
+      {categories.id && <h1>{t('product.categories.form.update')}: {categories.name}</h1>}
+      {!categories.id && <h1>{t('product.categories.form.new')}</h1>}
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
@@ -84,15 +86,15 @@ export default function CategoryForm() {
         }
         {!loading && (
           <form onSubmit={onSubmit}>
-            <input value={categories.name} onChange={ev => setcategories({...categories, name: ev.target.value})} placeholder="Name"/>
+            <input value={categories.name} onChange={ev => setcategories({...categories, name: ev.target.value})} placeholder={t('product.categories.form.name')}/>
             <select onChange={e => setcategories({...categories, category_id: Number.parseInt(e.target.value)})}>
-              <option value={0}>Choose parent category</option>
+              <option value={0}>{t('product.categories.form.choose')}</option>
               {parents.map(p => <option value={p.id}>
                 {p.name}
               </option>)}
             </select>
             <br/>
-            <button className="btn">Save</button>
+            <button className="btn">{t('product.categories.form.save')}</button>
           </form>
         )}
       </div>

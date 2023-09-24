@@ -4,6 +4,7 @@ import axiosClient from "../../axios-client";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useTranslation } from "react-i18next";
 
 const Checkout = () => {
     const navigate = useNavigate();
@@ -39,6 +40,8 @@ const Checkout = () => {
         payment_id: orderMethod.shipping,
         status: "accepted",
     });
+
+    const { t } = useTranslation('checkout')
 
     useEffect(() => {
         setTotal(subTotal + shippingPrice)
@@ -234,7 +237,7 @@ const Checkout = () => {
                         }}
                     >
                         <div className="row">
-                            <h2>Thông tin đơn hàng</h2>
+                            <h2>{t('heading')}</h2>
                         </div>
                         <form
                             action=""
@@ -245,7 +248,7 @@ const Checkout = () => {
                             <input
                                 name="fullname"
                                 type="text"
-                                placeholder="Họ và Tên"
+                                placeholder={t('name')}
                                 onChange={(e) => {
                                     setOrder({ ...order, full_name: e.target.value });
                                 }}
@@ -253,7 +256,7 @@ const Checkout = () => {
                             <input
                                 name="email"
                                 type="text"
-                                placeholder="Email"
+                                placeholder={t('email')}
                                 onChange={(e) => {
                                     setOrder({ ...order, email: e.target.value });
                                 }}
@@ -261,7 +264,7 @@ const Checkout = () => {
                             <input
                                 name="phone"
                                 type="text"
-                                placeholder="Số điện thoại"
+                                placeholder={t('phone')}
                                 onChange={(e) => {
                                     setOrder({ ...order, phone: e.target.value });
                                 }}
@@ -269,13 +272,13 @@ const Checkout = () => {
                             <input
                                 name="address"
                                 type="text"
-                                placeholder="Địa chỉ"
+                                placeholder={t('address')}
                                 onChange={(e) => {
                                     setOrder({ ...order, address: e.target.value });
                                 }}
                             />
                         </form>
-                        <h5>Phương thức vận chuyển</h5>
+                        <h5>{t('shipping')}</h5>
                         <form>
                             {shipping.map((s) => {
                                 return (
@@ -316,7 +319,7 @@ const Checkout = () => {
                                 );
                             })}
                         </form>
-                        <h5>Phương thức thanh toán</h5>
+                        <h5>{t('payment')}</h5>
                         <form>
                             {payment.map((p) => (
                                 <div
@@ -404,7 +407,7 @@ const Checkout = () => {
                         </form>
                     </div>
                     <div className="col-lg-5">
-                        <div className="row">Đơn hàng ({count} sản phẩm)</div>
+                        <div className="row">{t('order.title')}: {count} {t('order.product')}</div>
                         <div className="row">
                             <input
                                 type="hidden"
@@ -463,7 +466,7 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                Tạm tính:
+                                {t('order.subtotal')}:
                             </div>
                             <div
                                 style={{
@@ -486,7 +489,7 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                Phí vận chuyển:
+                                {t('order.shipping_price')}:
                             </div>
                             <div
                                 style={{
@@ -513,7 +516,7 @@ const Checkout = () => {
                                 <input
                                     type="text"
                                     id="coupon"
-                                    placeholder="Nhập mã giảm giá"
+                                    placeholder={t('order.coupon')}
                                 />
                             </div>
                             <div
@@ -536,7 +539,7 @@ const Checkout = () => {
                                     });
                                 }}
                             >
-                                Áp dụng
+                                {t('order.apply')}
                             </div>
                         </div>
                         <div
@@ -553,7 +556,7 @@ const Checkout = () => {
                                     display: "flex",
                                 }}
                             >
-                                Tổng cộng:
+                                {t('order.total')}:
                             </div>
                             <div
                                 style={{
@@ -650,7 +653,7 @@ const Checkout = () => {
                                         .catch((err) => console.log(err));
                                 }}
                             >
-                                Đặt hàng
+                                {t('order.submit')}
                             </button>
                         </div>
                         <div
@@ -660,7 +663,7 @@ const Checkout = () => {
                                 justifyContent: "end",
                             }}
                         >
-                            <div className="col-lg-1">hoặc</div>
+                            <div className="col-lg-1">{t('order.or')}</div>
                             <div className="col-lg-6">
                                 <PayPalScriptProvider options={initialOptions}>
                                     <PayPalButtons

@@ -1,0 +1,10 @@
+{
+  "heading": "SHOP PAGE",
+  "filter": {
+    "title": "Choose price",
+    "under": "Under",
+    "upper": "Upper"
+  },
+  "price": "price",
+  "look": "Look"
+}
